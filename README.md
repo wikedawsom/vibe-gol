@@ -8,6 +8,8 @@ I would like to create a React app that implements Conway's "Game of Life". We c
 
 I then followed up by running all recommended console commands and approving all changes.
 
+Afterwards, I added the `gh-pages` package and made some adjustments to the config files so that I could deploy this to GitHub pages.
+
 ## AI Work Summary
 
 "
