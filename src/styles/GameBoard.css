@@ -1,0 +1,25 @@
+.game-board {
+  background-color: #f0f0f0;
+  border: 2px solid #333;
+  padding: 2px;
+  margin: 20px auto;
+}
+
+.cell {
+  width: 15px;
+  height: 15px;
+  border: 1px solid #ccc;
+  background-color: white;
+}
+
+.cell:hover {
+  background-color: #e0e0e0;
+}
+
+.cell.alive {
+  background-color: #333;
+}
+
+.cell.dead {
+  background-color: white;
+}
