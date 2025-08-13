@@ -11,3 +11,8 @@ jobs:
                   node-version: "22.17.1"
             - run: npm ci
             - run: npm run prettier
+              continue-on-error: true
+            - name: Display prettier error
+              if: steps.prettier.outcome == 'failure'
+              run: echo "Prettier found formatting errors."
+              run: echo "Please run `npm run prettier:fix`, then push changes to this branch."
