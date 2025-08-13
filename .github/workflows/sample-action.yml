@@ -1,0 +1,26 @@
+name: github-action-prettier-format
+run-name: Formatting With Prettier
+on: [pull_request]
+jobs:
+    check-bats-version:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: "22.17.1"
+            - run: npm ci
+            - run: npm run prettier:fix
+            - name: Commit changes
+              uses: stefanzweifel/git-auto-commit-action@v6
+              id: auto-commit-action
+              with:
+                  commit_message: Apply prettier formatting
+                  branch: ${{ github.head_ref }}
+            - name: "If changes were committed"
+              if: steps.auto-commit-action.outputs.changes_detected == 'true'
+              run: echo "Code has been formatted."
+
+            - name: "If no changes committed"
+              if: steps.auto-commit-action.outputs.changes_detected == 'false'
+              run: echo "No formatting required."
