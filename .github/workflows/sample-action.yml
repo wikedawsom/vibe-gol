@@ -1,0 +1,19 @@
+name: github-action-prettier-format
+run-name: Formatting With Prettier
+on: [pull_request]
+jobs:
+    github-action-prettier-format:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: "22.17.1"
+            - name: install-packages
+              run: npm ci
+            - name: prettier
+              run: npm run prettier
+              continue-on-error: true
+            - name: Display prettier error
+              if: steps.prettier.outcome == 'failure'
+              run: echo "Prettier found formatting errors.\nPlease run `npm run prettier:fix`, then push changes to this branch."
