@@ -9,8 +9,9 @@ jobs:
             - uses: actions/setup-node@v4
               with:
                   node-version: "22.17.1"
-            - run: npm ci
-            - run: npm run prettier
+            - name: prettier
+              run: npm ci
+              run: npm run prettier
               continue-on-error: true
             - name: Display prettier error
               if: steps.prettier.outcome == 'failure'
