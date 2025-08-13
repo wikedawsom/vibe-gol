@@ -2,7 +2,7 @@ name: github-action-prettier-format
 run-name: Formatting With Prettier
 on: [pull_request]
 jobs:
-    check-bats-version:
+    github-action-prettier-format:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v4
@@ -17,6 +17,7 @@ jobs:
               with:
                   commit_message: Apply prettier formatting
                   branch: ${{ github.head_ref }}
+                  token: ${{ secrets.AUTO_COMMIT_ACTION_PAT }}
             - name: "If changes were committed"
               if: steps.auto-commit-action.outputs.changes_detected == 'true'
               run: echo "Code has been formatted."
